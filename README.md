@@ -1,12 +1,53 @@
-# React + Vite
+🌤️ Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and responsive weather application built with React.js and Tailwind CSS. It uses the OpenWeatherMap API to fetch real-time weather data based on the city entered by the user.
 
-Currently, two official plugins are available:
+✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔎 Search for weather by city name
+🌡️ Displays temperature, weather condition,  humidity, and more
+🎨 Beautiful glassmorphism UI with TailwindCSS
+⏳ Loading spinner while fetching data
+📦 Modular components (SearchBar, WeatherCard, EmptyCard) for clean code structure
 
-## Expanding the ESLint configuration
+🚀 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+React.js – Frontend library
+
+Tailwind CSS – Styling
+
+OpenWeatherMap API – Weather data
+
+📂 Project Structure
+src/
+ ├── components/
+ │   ├── SearchBar.jsx
+ │   ├── WeatherCard.jsx
+ │   ├── EmptyCard.jsx
+ │   └── Loader.jsx (optional)
+ ├── assets/
+ │   └── weather-image.png
+ ├── App.jsx
+ └── index.js
+
+🔑 API Setup
+
+1.Create an account on OpenWeatherMap
+2.Generate a free API key from the API Keys section.
+3.Replace the placeholder in App.jsx:
+  const API_KEY = "your_api_key_here";
+
+▶️ Run Locally
+
+Clone the repo and install dependencies:
+git clone https://github.com/your-username/weather-app.git
+cd weather-app
+npm install
+npm run dev
+
+-Author
+Himanshu Singh
+
+📜 License
+
+This project is open-source and free to use.

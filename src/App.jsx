@@ -6,7 +6,8 @@ import WeatherCard from './components/WeatherCard';
 
 function App() {
   //Api Key..
-  const API_KEY = "324defafb7c44333747c0041701a350a";
+  const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+
 
   const [loading,setLoading] = useState(false)
   const [city, setCity] = useState("");

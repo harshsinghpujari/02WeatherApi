@@ -1,4 +1,4 @@
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 import myImage from './assets/weather-image.png'
 import SearchBar from './components/SearchBar';
 import EmptyCard from './components/EmptyCard';
@@ -12,6 +12,9 @@ function App() {
   const [loading,setLoading] = useState(false)
   const [city, setCity] = useState("");
   const [weather,setWeather] = useState({});
+  const [history,setHistory] = useState([]);
+
+
 
   const handleCityName = async () => {
     setLoading(true);
@@ -20,10 +23,18 @@ function App() {
     const data = await res.json();
     console.log(data);
     setWeather(data);
+
+    if(data && data.main){
+      const newHistory = [data,...history].slice(0,3);
+      setHistory(newHistory);
+      localStorage.setItem("getHistory",JSON.stringify(newHistory));
+    }
+
     setLoading(false);
     setCity("");
   
   }
+
 
   const handleAction = (e) => {
     if(e.key === 'Enter'){
@@ -31,12 +42,18 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    const store = localStorage.getItem("getHistory");
+    if(store){
+    setHistory(JSON.parse(store));
+    }
+  },[])
 
 
   return (
     <>
       <div className='bg-gradient-to-br from-blue-400 via-blue-500 to-indigo-600 
-                w-full h-screen text-white flex flex-col justify-start items-center'>
+                w-full min-h-screen text-white flex flex-col justify-start items-center'>
         <div className=' mt-12'>
           <img src={myImage}alt="weather-image" width={100} height={100}/>
           
@@ -67,7 +84,25 @@ function App() {
            : (
            <EmptyCard/>
           )
-        )}
+        )
+         
+        }
+        <h1 className='mt-10 text-3xl font-bold  '>Recent searches</h1>
+        <div className=' mt-2 w-full flex  gap-4 items-center justify-center align-middle flex-wrap mb-2'>
+          
+          {
+            history.map((items,index) => (
+            
+              <WeatherCard
+              key={index}
+              weather={items}
+              myImage={myImage}
+              />
+            
+            ))
+          }
+        </div>
+        
       </div>
     </>
   )

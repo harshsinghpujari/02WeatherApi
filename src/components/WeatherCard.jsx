@@ -1,11 +1,17 @@
-import React from 'react'
+import {motion} from 'framer-motion'
+
 function weatherCard({weather,myImage}) {
   return (
-    <div>
-      <div className=' mt-12  w-90 h-32 bg-white/40 backdrop-blur-md  text-2xl text-black flex items-center shadow-2xl rounded-2xl p-5 border border-white/30 py-7'>
+    <motion.div
+    initial={{opacity: 0, y:50}}
+    animate={{opacity:1, y:0}}
+    transition={{duration:0.6,ease: 'easeOut'}}
+    className='w-100 h-40 mt-2 flex items-center justify-center align-middle'
+    >
+      <div className='w-90 h-32 bg-white/40 backdrop-blur-md  text-2xl text-black flex items-center shadow-2xl rounded-2xl p-5 border border-white/30 py-7'>
             <div className=' h-full w-25 flex flex-col justify-center items-center gap-0 '>
               <img src={myImage} alt="cloud image" width={90} height={70}/>
-              <h2 className='text-2xl text-amber-300 mb-2 font-bold'>{weather.name}</h2>
+              <h2 className='text-2xl text-indigo-500 mb-2 font-semibold'>{weather.name}</h2>
             </div>
             <div className='h-full w-25 flex flex-col items-center justify-center'>
               <h1
@@ -20,7 +26,7 @@ function weatherCard({weather,myImage}) {
               <p>feels_like:{weather.main.feels_like}</p>
             </div>
           </div>
-    </div>
+    </motion.div>
   )
 }
 
